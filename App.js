@@ -20,49 +20,16 @@ import {
   View,
 } from 'react-native';
 import {AboutScreen} from './src/screens/AboutScreen';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+
 import {Quote} from './src/screens/QuoteScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ubuntu } from './src/props';
+import { QuoteNav } from './src/navigation/QuoteNav';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
@@ -97,14 +64,14 @@ const App: () => Node = () => {
             fontWeight: 'bold'
           },
           tabBarItemStyle: {
-            paddingTop: 10,
-            paddingBottom: 10,
+            paddingTop: 2,
+            paddingBottom: 2,
           },
           tabBarActiveTintColor: '#075985',
           tabBarInactiveTintColor: 'white',
         })}>
         <Tab.Screen name="О приложении" component={AboutScreen} />
-        <Tab.Screen name="Котировки" component={Quote} />
+        <Tab.Screen name="Котировки" component={QuoteNav} />
       </Tab.Navigator>
     </NavigationContainer>
   );
