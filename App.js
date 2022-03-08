@@ -28,7 +28,6 @@ import { QuoteNav } from './src/navigation/QuoteNav';
 
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
   const Tab = createBottomTabNavigator();
   return (
@@ -53,12 +52,12 @@ const App: () => Node = () => {
           headerShown: false,
           tabBarStyle: { 
               backgroundColor: '#9a9ed9',
-              height: 80,
+             /*  height: 80, */
 
           },
           tabBarLabelPosition: 'below-icon',
           tabBarLabelStyle: {
-            marginBottom: 5,
+            marginBottom: 2,
             fontSize: 15,
             fontFamily: ubuntu,
             fontWeight: 'bold'

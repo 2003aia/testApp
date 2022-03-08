@@ -7,22 +7,20 @@ import {Tables} from '../components/Items';
 export const Quote = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [state, setState] = useState({ data: null, error: false, loading: true })
-
+  const [state, setState] = useState({data: null, error: false, loading: true});
+  const url = 'https://poloniex.com/public?command=returnTicker';
   async function getData() {
     try {
       setLoading(true);
-      const response = await axios.get(
-        'https://poloniex.com/public?command=returnTicker',
-      );
+      const response = await axios.get(url);
       setData(response.data);
     } catch (error) {
       setLoading(false);
       console.error(error);
     }
   }
-  const url = 'https://poloniex.com/public?command=returnTicker'
-  useEffect(() => {
+
+  /* useEffect(() => {
     const intervalId = setInterval(() => {
       //assign interval to a variable to clear it.
       setState(state => ({data: state.data, error: false, loading: true}));
@@ -42,11 +40,11 @@ export const Quote = () => {
     }, 5000);
 
     return () => clearInterval(intervalId); //This is important
-  }, [url, useState]);
+  }, [url, useState]); */
 
-/*   useEffect(() => {
-    getData();
-  }, []); */
+  useEffect(() => {
+    getData().then(()=>setLoading(false));
+  }, []);
   return (
     <View style={style.main}>
       <Text
